@@ -17,11 +17,12 @@ row below that predates this rule is marked accordingly.
 - Impulse's working branch (`bringup/oneui85-d2s`) is based on upstream commit
   `c83e070e` ("scripts: internal: build_flashable_zip.sh: fix zipping
   issues").
-- As of this writing, `origin` on the Impulse working checkout is still
-  `https://github.com/Ocin4ever/EternityROM.git` — no Impulse-owned remote
-  has been published yet. The rows below reference the local branch state;
-  the commit hashes will only resolve publicly once Impulse's own fork/remote
-  is pushed.
+- Public Impulse fork: [TomasULR/ImpulseROM](https://github.com/TomasULR/ImpulseROM),
+  branch `bringup/oneui85-d2s`.
+- Initial public Impulse source snapshot:
+  [`a0728717aab8bef2d42f4b0aee88f22defd002a2`](https://github.com/TomasULR/ImpulseROM/commit/a0728717aab8bef2d42f4b0aee88f22defd002a2).
+  This publishes the accumulated Impulse changes; it is not an exact
+  reconstruction of the earlier dirty-tree Alpha 1 and Alpha 2 builds described below.
 
 ## Releases
 
@@ -68,6 +69,33 @@ marked superseded/rejected in `docs/RELEASE_AUDIT_ALPHA8.md`). These predate
 the "Impulse ROM" rebrand and are a **different lineage** from
 `v1.0-oneui85-alpha1` above — do not conflate the two when citing "Alpha 1."
 
+### Impulse ROM v1.0 — Alpha 2 (September test build)
+
+| Field | Value |
+| --- | --- |
+| ROM version | `v1.0-oneui85-alpha2` |
+| Distributed filename | `ImpulseROM_v1.0-oneui85-alpha2_@c83e070e-dirty_20260901_d2s-sign.zip` |
+| Build date | 2026-09-01 |
+| ZIP size (Drive metadata) | 5,800,045,146 bytes |
+| Published ROM SHA-256 | `14cc19c811d4f0fcb39a429651fc26a17881eab4e233adbc38a9869cccf1504c` |
+| Upstream base recorded in filename | `c83e070e` |
+| Exact Impulse source commit | Not recorded: the filename and release notes identify an uncommitted working tree. |
+| Expected prebuilt kernel input | ExtremeKRNL `v2.0`, as recorded in [kernel-source.md](kernel-source.md); not independently checked against the Drive ZIP in this update. |
+| Exact in-kernel KernelSU-Next commit | Unresolved; see [kernel-source.md](kernel-source.md). |
+| Runtime status in accompanying notes | Not yet flashed or runtime-tested; offline validation was reported. |
+
+Public download: [Impulse ROM on Google Drive](https://drive.google.com/drive/folders/1BlQ1hBhLhhRsLkH6P1ozAfAJ7xOlbzKK?usp=drive_link),
+[Alpha 2 folder](https://drive.google.com/drive/folders/1vFBMG9UuvbmCtLBbB1dLnoBBvsxceyC6).
+The checksum and test status above come from its accompanying
+[checksum file](https://drive.google.com/file/d/19UiWDayTD0BTfVOGM-QTYUr_uLViPnPz/view?usp=drivesdk)
+and [KNOWN_ISSUES.txt](https://drive.google.com/file/d/1sUQ1XYNcOMyJuh9KMnO7xTxLjt6NxAX7/view?usp=drivesdk).
+The ZIP has not been downloaded or independently hashed during this update.
+
+The public snapshot `a0728717` was committed after this build. Do not tag it
+as `v1.0-alpha2` or claim that it is the exact source of the September ZIP.
+The next newly built release should use a distinct version (for example
+`v1.0-alpha3`) and record its exact clean source commit and submodule revisions.
+
 ### Future releases
 
 For every release going forward, fill in this table from a clean, tagged
@@ -82,11 +110,16 @@ procedure):
 
 1. Land all intended changes on `bringup/oneui85-d2s` (or its successor
    branch) and commit them — no uncommitted state.
-2. Tag the commit (e.g. `v1.0-alpha2`).
+2. Tag the exact clean build-source commit (e.g. `v1.0-alpha3`) and publish
+   that tag before distributing the resulting binary. Never move a release
+   tag to a later commit.
 3. Record the tag, the upstream base commit it's built on, and the kernel
    release/submodule state it will consume, in the table above, **before**
    building.
 4. Build from that tag in a clean checkout (the container build in
    `docker/`/`scripts/build_in_container.sh` is the reproducible path).
 5. Hash the resulting artifact and add the hash to the table.
-6. Only then distribute the artifact.
+6. Publish release notes with the source tag/commit, exact filename, size,
+   SHA-256, download link, changes and actual device test status. Only then
+   distribute the artifact. For a ZIP too large for a GitHub release asset,
+   link to the Drive artifact and keep the source tag and notes on GitHub.
