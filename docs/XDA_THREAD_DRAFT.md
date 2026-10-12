@@ -19,7 +19,7 @@
 [SIZE=5]One UI 8.5 / Android 16 for the Galaxy Note10+ Exynos[/SIZE]
 
 [B]Device:[/B] SM-N975F (d2s) only
-[B]Current release:[/B] v1.0 One UI 8.5 Alpha 1
+[B]Current download:[/B] v1.0 One UI 8.5 Alpha 2 — test build, device testing pending
 [B]Android:[/B] 16 / API 36
 [B]Security patch:[/B] 5 June 2026
 [B]SELinux:[/B] Enforcing
@@ -54,12 +54,14 @@ The project is a GPLv3 fork of EternityROM by Ocin4ever, built on the ROM build 
 [*]ExtremeKRNL for d2s
 [*]KernelSU-Next manager included — this build is rooted by design
 [*]Package-scoped ROM signing; no unrestricted signature bypass
-[*]Fixed recurring system soft reboots caused by incompatible Samsung OLED afterimage compensation
-[*]Fixed Samsung Photo Editor filter crashes with a matching-generation Filter Provider
-[*]Extra dim backend restored for the Note10+; full Modes and Routines integration is being finalized
+[*]Disabled incompatible Samsung OLED afterimage compensation; Alpha 2 still requires multi-day stability testing
+[*]Photo Editor and camera changes included; Alpha 2 save/export and recording tests remain pending
+[*]Extra dim SystemUI and Modes and Routines changes included; Alpha 2 device testing remains pending
 [/LIST]
 
-[SIZE=5][B]Working[/B][/SIZE]
+[SIZE=5][B]Previously tested functionality[/B][/SIZE]
+
+The following describes earlier developer builds. Alpha 2 has not yet been flashed or runtime-tested according to its accompanying release notes, so all hardware features require retesting on this ZIP.
 
 [LIST]
 [*]System boot and normal UI
@@ -82,7 +84,8 @@ The project is a GPLv3 fork of EternityROM by Ocin4ever, built on the ROM build 
 [*]Samsung Pay and Wallet are not supported. Secure Folder is reported working on Impulse; the next build still requires regression testing.
 [*]Play Integrity fails. Some banking, work-profile and streaming applications may not run.
 [*]Samsung camera AI, Gallery OCR and related NPU features are unstable. The Samsung snap service can restart when a model cannot be mapped.
-[*]In Alpha 1, Extra dim works through its system backend and Quick Settings shortcut, but the Modes and Routines action may be shown as unavailable. The source fix is prepared for the next build.
+[*]Alpha 2 includes Extra dim SystemUI and Modes and Routines provider changes, but their behavior has not yet been verified on the phone.
+[*]Maximum outdoor brightness, HDR controls and Instagram/video playback require testing; these are not claimed as fixed.
 [*]This release has not completed the full clean-install community test matrix. Please treat it as an alpha.
 [/LIST]
 
@@ -107,17 +110,34 @@ The project is a GPLv3 fork of EternityROM by Ocin4ever, built on the ROM build 
 
 [SIZE=5][B]Download[/B][/SIZE]
 
-[B]ROM:[/B] [URL='REPLACE_WITH_PUBLIC_DOWNLOAD_URL']ImpulseROM v1.0 One UI 8.5 Alpha 1[/URL]
+[B]Download:[/B] [URL='https://drive.google.com/drive/folders/1BlQ1hBhLhhRsLkH6P1ozAfAJ7xOlbzKK?usp=drive_link']Impulse ROM — Google Drive[/URL]
+[B]Alpha 2 files:[/B] [URL='https://drive.google.com/drive/folders/1vFBMG9UuvbmCtLBbB1dLnoBBvsxceyC6']v1.0-alpha2[/URL]
+[B]Installation guide:[/B] [URL='https://drive.google.com/file/d/1MAffmzukrYESeZPal48-bqt_FkddgzQM/view?usp=drivesdk']INSTALL.md[/URL]
+[B]Release status and known issues:[/B] [URL='https://drive.google.com/file/d/1sUQ1XYNcOMyJuh9KMnO7xTxLjt6NxAX7/view?usp=drivesdk']KNOWN_ISSUES.txt[/URL]
+[B]Checksum file:[/B] [URL='https://drive.google.com/file/d/19UiWDayTD0BTfVOGM-QTYUr_uLViPnPz/view?usp=drivesdk']Alpha 2 SHA-256[/URL]
+
+[B]Alpha 2 is a test build from an uncommitted working tree. Its accompanying release notes report offline validation, but no device boot or runtime testing. Clean-install validation remains incomplete.[/B]
 
 [CODE]
-File: ImpulseROM_v1.0-oneui85-alpha1_@c83e070e-dirty_20260824_d2s-sign.zip
-Size: 5,799,702,082 bytes
-SHA-256: 0727861f7da3b76cf754992e07699db5c322dce7e1c250a4394093e73e1347b6
+File: ImpulseROM_v1.0-oneui85-alpha2_@c83e070e-dirty_20260901_d2s-sign.zip
+Build date: 1 September 2026
+Size: 5,800,045,146 bytes
+SHA-256: 14cc19c811d4f0fcb39a429651fc26a17881eab4e233adbc38a9869cccf1504c
 [/CODE]
 
 [B]The flashable ZIP is not cryptographically signed. Always verify the SHA-256 after downloading.[/B]
 
-[SIZE=5][B]Changelog — v1.0 Alpha 1[/B][/SIZE]
+[SIZE=5][B]Changelog — v1.0 Alpha 2[/B][/SIZE]
+
+[LIST]
+[*]Included Extra dim SystemUI and Modes and Routines provider changes; device testing pending
+[*]Included Photo Editor and camera changes; save/export and recording tests pending
+[*]Kept incompatible AfterimageCompensationService disabled
+[*]Release notes report offline package, VINTF, audio, ELF32, ELF64 and ZIP integrity checks passing
+[*]26 inherited non-critical patches remained at stock because they drifted against the Android 16 / One UI 8.5 source
+[/LIST]
+
+[SIZE=5][B]Previous changelog — v1.0 Alpha 1[/B][/SIZE]
 
 [LIST]
 [*]Initial Impulse ROM rebrand and d2s alpha release
@@ -132,12 +152,18 @@ SHA-256: 0727861f7da3b76cf754992e07699db5c322dce7e1c250a4394093e73e1347b6
 
 [SIZE=5][B]Source code and licences[/B][/SIZE]
 
-[B]Impulse ROM source:[/B] [URL='REPLACE_WITH_PUBLIC_IMPULSE_SOURCE_URL']REPLACE BEFORE POSTING[/URL]
+[B]Impulse ROM source, including my changes:[/B] [URL='https://github.com/TomasULR/ImpulseROM']github.com/TomasULR/ImpulseROM[/URL]
+[B]Source branch:[/B] [URL='https://github.com/TomasULR/ImpulseROM/tree/bringup/oneui85-d2s']bringup/oneui85-d2s[/URL]
+[B]Initial public source snapshot:[/B] [URL='https://github.com/TomasULR/ImpulseROM/commit/a0728717aab8bef2d42f4b0aee88f22defd002a2']a0728717[/URL]
 [B]Upstream EternityROM:[/B] [URL='https://github.com/Ocin4ever/EternityROM']github.com/Ocin4ever/EternityROM[/URL]
-[B]Kernel source:[/B] [URL='https://github.com/Ocin4ever/ExtremeKernel/tree/f54c88ef6171ff3c4b5067911d5e8e4a0c62ec17']ExtremeXT Exynos 9820 kernel source[/URL]
+[B]Kernel source:[/B] [URL='https://github.com/Ocin4ever/ExtremeKernel/tree/f54c88ef6171ff3c4b5067911d5e8e4a0c62ec17']Ocin4ever/ExtremeKernel, v2.0 source tree[/URL]
 [B]KernelSU-Next:[/B] [URL='https://github.com/KernelSU-Next/KernelSU-Next']github.com/KernelSU-Next/KernelSU-Next[/URL]
+[B]Build instructions:[/B] [URL='https://github.com/TomasULR/ImpulseROM/blob/bringup/oneui85-d2s/BUILDING.md']BUILDING.md[/URL]
+[B]Source and kernel provenance:[/B] [URL='https://github.com/TomasULR/ImpulseROM/blob/bringup/oneui85-d2s/docs/source-provenance.md']Release source records[/URL] | [URL='https://github.com/TomasULR/ImpulseROM/blob/bringup/oneui85-d2s/docs/kernel-source.md']Kernel source details[/URL]
 
-Impulse ROM is distributed under GPLv3. The Linux kernel is GPLv2. Samsung proprietary firmware blobs are build inputs and are not represented as original Impulse ROM work.
+The Impulse ROM build project and my modifications are distributed under GPLv3. The Linux kernel is GPLv2; external components retain their own licences. Samsung proprietary firmware blobs are build inputs and are not represented as original Impulse ROM work. Upstream authorship and copyright notices are preserved.
+
+The public repository contains the accumulated Impulse changes. Alpha 1 and the September Alpha 2 test ZIP were built from uncommitted working trees, so the current public snapshot is not claimed to reproduce those ZIPs exactly. The unmodified prebuilt kernel is pinned to ExtremeKRNL v2.0; the exact KernelSU-Next driver commit compiled into it remains unverified because its upstream build used a floating submodule checkout. Kernel provenance and the Alpha 1 source limitations are documented in the source records linked above; Alpha 2's test status is recorded in its accompanying KNOWN_ISSUES.txt.
 
 [SIZE=5][B]Credits[/B][/SIZE]
 
@@ -172,10 +198,14 @@ Also include the exact ZIP filename, its SHA-256, whether you clean-flashed, and
 
 ## Replace before publishing
 
-- `REPLACE_WITH_PUBLIC_DOWNLOAD_URL`
-- `REPLACE_WITH_PUBLIC_IMPULSE_SOURCE_URL`
+- Verify anonymous download access to the supplied Drive folder and verify
+  the ZIP against its checksum. The Alpha 2 checksum above is copied from
+  its accompanying release notes/checksum file, not independently recomputed.
 - Add current screenshots.
-- Rebuild and test the pending Modes and Routines Extra dim fix, then update the
-  version, filename, size, checksum and changelog if the release becomes Alpha 2.
+- Test Alpha 2 on the device, including Extra dim in Quick Settings,
+  Accessibility and Modes and Routines. Record the actual results before
+  changing its test status.
+- The next new build needs a distinct version, exact source reference,
+  filename, size and checksum; do not overwrite the September Alpha 2 ZIP.
 - Perform at least one clean installation from the documented stock baseline.
 - Capture a wireless-charger log and either fix the issue or retain the warning.
