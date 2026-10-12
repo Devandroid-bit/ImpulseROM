@@ -10,7 +10,7 @@ Impulse ROM adapts EternityROM's build system and One UI/Android base to the
 Samsung Galaxy Note10+ Exynos (`d2s` / `SM-N975F`), tracking a newer One UI
 8.5 / Android 16 source than upstream currently ships for this device.
 Impulse-specific changes include (non-exhaustively; see
-`docs/source-provenance.md` for exact commit-level detail once published):
+`docs/source-provenance.md` for public commit references and release limitations):
 device/source configuration for the `essi85` profile, DEX-inventory and
 ELF/VINTF/audio/multilib validation tooling, several device-specific smali
 patches, a reproducible container build path, and installation/rollback
